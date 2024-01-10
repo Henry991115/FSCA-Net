@@ -7,7 +7,7 @@ import math
 import torch.nn as nn
 import torch
 import torch.nn.functional as F
-from .CTrans_epa import ChannelTransformer
+from .CTrans_scca import ChannelTransformer
 
 
 ## upsample tensor 'src' to have the same spatial size with tensor 'tar'
