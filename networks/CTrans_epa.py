@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-# @Author  : Haonan Wang
-# @File    : CTrans.py
-# @Software: PyCharm
-# coding=utf-8
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -73,7 +69,7 @@ class Reconstruct(nn.Module):
         out = self.activation(out)
         return out
 
-class EPA(nn.Module):
+class SCCA(nn.Module):
     """
         Efficient Paired Attention Block, based on: "Shaker et al.,
         UNETR++: Delving into Efficient and Accurate 3D Medical Image Segmentation"
@@ -182,10 +178,10 @@ class Block_ViT(nn.Module):
         #self.channel_attn2 = EPA(input_size=channel_num[1], hidden_size=channel_num[1], proj_size=channel_num[1] * 4)
         #self.channel_attn3 = EPA(input_size=channel_num[2], hidden_size=channel_num[2], proj_size=channel_num[2] * 4)
         #self.channel_attn4 = EPA(input_size=channel_num[3], hidden_size=channel_num[3], proj_size=channel_num[3] * 4)
-        self.channel_attn1 = EPA(input_size=196, hidden_size=64, proj_size=64)
-        self.channel_attn2 = EPA(input_size=196, hidden_size=128, proj_size=64)
-        self.channel_attn3 = EPA(input_size=196, hidden_size=256, proj_size=64)
-        self.channel_attn4 = EPA(input_size=196, hidden_size=512, proj_size=32)
+        self.channel_attn1 = SCCA(input_size=196, hidden_size=64, proj_size=64)
+        self.channel_attn2 = SCCA(input_size=196, hidden_size=128, proj_size=64)
+        self.channel_attn3 = SCCA(input_size=196, hidden_size=256, proj_size=64)
+        self.channel_attn4 = SCCA(input_size=196, hidden_size=512, proj_size=32)
         self.ffn_norm1 = LayerNorm(channel_num[0],eps=1e-6)
         self.ffn_norm2 = LayerNorm(channel_num[1],eps=1e-6)
         self.ffn_norm3 = LayerNorm(channel_num[2],eps=1e-6)
